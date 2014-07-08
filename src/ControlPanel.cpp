@@ -23,15 +23,17 @@ ControlPanel::ControlPanel(QWidget *parent) :
     QCoreApplication::setApplicationName("SRS Control Panel");
     settings = new QSettings;
 
-    // Restore Window Settings
-    restoreGeometry(settings->value("geometry",
-        QByteArray::fromHex("01d9d0cb000100000000004d000000590000023a0000021000000057000000810000023000000206000000000000")
-        ).toByteArray());
+    // Restore Settings
     if(!settings->contains("default_robot_dir"))
         settings->setValue("default_robot_dir", QFileInfo(settings->fileName()).dir().path() + "/robots");
 
     // Setup the UI
     ui->setupUi(this);
+
+    // Restore Window Geometry
+    restoreGeometry(settings->value("geometry",
+        QByteArray::fromHex("01d9d0cb000100000000004d000000590000023a0000021000000057000000810000023000000206000000000000")
+        ).toByteArray());
 
     // Robot Widgets
     ui->robotWidgetDock->hide();
@@ -141,4 +143,5 @@ void ControlPanel::setTabName(QWidget *w, const QString &name)
 void ControlPanel::closeEvent(QCloseEvent *event)
 {
     settings->setValue("geometry", saveGeometry());
+    QMainWindow::closeEvent(event);
 }
