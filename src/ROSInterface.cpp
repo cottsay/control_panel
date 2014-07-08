@@ -43,7 +43,7 @@ void ROSInterface::process()
     char **argv = QCoreApplication::argv();
 
     if(!ros::ok())
-        ros::init(argc, argv, "control_panel", ros::init_options::NoSigintHandler);
+        ros::init(argc, argv, "control_panel");
 
     ROS_DEBUG("Starting control_panel ROS interface");
 
@@ -75,6 +75,8 @@ void ROSInterface::process()
     ROS_DEBUG("control_panel ROS interface startup complete");
 
     ros::spin();
+
+    QCoreApplication::exit(0);
 }
 
 void ROSInterface::refresh_plugins()
