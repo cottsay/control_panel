@@ -102,8 +102,6 @@ void ControlPanel::triggerNewBlankRobot()
 
     RobotTab *rt = new RobotTab(ui->robotTabs, this, name);
     ui->robotTabs->setCurrentIndex(ui->robotTabs->addTab(rt, rt->getName()));
-
-    toggleRobotWidgetsDock(true);
 }
 
 void ControlPanel::closeRobotTab(int index)

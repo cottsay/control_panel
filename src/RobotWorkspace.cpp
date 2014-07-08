@@ -92,6 +92,9 @@ RobotWorkspace::RobotWorkspace(QWidget *parent, const QUuid _uuid, RobotTab *_rt
 
     this->setChildrenCollapsible(false);
     connect(this, SIGNAL(splitterMoved(int, int)), this, SLOT(layoutUpdate()));
+
+    if(!dynamic_cast<RobotWorkspace *>(parentWidget()) && count() < 1)
+        rt->cp->toggleRobotWidgetsDock(true);
 }
 
 RobotWorkspace::~RobotWorkspace()
