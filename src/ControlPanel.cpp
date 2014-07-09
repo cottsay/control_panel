@@ -12,7 +12,10 @@ ControlPanel::ControlPanel(QWidget *parent) :
     settings(NULL),
     QMainWindow(parent),
     ui(new Ui::ControlPanel),
-    master_check(0)
+    master_check(0),
+    shortcut_close_tab(QKeySequence(Qt::CTRL + Qt::Key_W), this, SLOT(closeCurrentTab())),
+    shortcut_next_tab(QKeySequence(Qt::CTRL + Qt::Key_Tab), this, SLOT(nextTab())),
+    shortcut_previous_tab(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Tab), this, SLOT(previousTab()))
 {
     // Register Metatypes
     qRegisterMetaTypeStreamOperators<QList<QUuid> >("QList<QUuid>");
@@ -143,6 +146,22 @@ QString ControlPanel::getTabName(QWidget *w)
 void ControlPanel::setTabName(QWidget *w, const QString &name)
 {
     ui->robotTabs->setTabText(ui->robotTabs->indexOf(w), name);
+}
+
+void ControlPanel::closeCurrentTab()
+{
+    if(ui->robotTabs->tabText(ui->robotTabs->currentIndex()) != "Home")
+        ui->robotTabs->removeTab(ui->robotTabs->currentIndex());
+}
+
+void ControlPanel::nextTab()
+{
+    ui->robotTabs->setCurrentIndex((ui->robotTabs->currentIndex() + 1) % ui->robotTabs->count());
+}
+
+void ControlPanel::previousTab()
+{
+    ui->robotTabs->setCurrentIndex((ui->robotTabs->currentIndex() + ui->robotTabs->count() - 1) % ui->robotTabs->count());
 }
 
 void ControlPanel::closeEvent(QCloseEvent *event)

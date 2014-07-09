@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QLabel>
+#include <QShortcut>
 #include <QThread>
 #include <QTimer>
 #include <QSettings>
@@ -35,6 +36,9 @@ public slots:
     void updateMasterStatus();
     void updatePluginList(const QStringList &list);
     void unloadNodeletPlugin(const QString name, const QString instance);
+    void closeCurrentTab();
+    void nextTab();
+    void previousTab();
     
 private:
     void closeEvent(QCloseEvent *event);
@@ -43,6 +47,9 @@ private:
     QLabel ms;
     QThread ros_thread;
     QTimer *master_check;
+    QShortcut shortcut_close_tab;
+    QShortcut shortcut_next_tab;
+    QShortcut shortcut_previous_tab;
 };
 
 #endif // CONTROLPANEL_H
