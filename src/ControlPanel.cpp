@@ -49,6 +49,7 @@ ControlPanel::ControlPanel(QWidget *parent) :
     connect(&ros_thread, SIGNAL(started()), &ros_interface, SLOT(process()));
     connect(&ros_interface, SIGNAL(masterStatusMsg(QString)), &ms, SLOT(setText(QString)));
     connect(&ros_interface, SIGNAL(newPluginList(QStringList)), this, SLOT(updatePluginList(QStringList)));
+    connect(&ros_interface, SIGNAL(openRobot(const QString &)), this, SLOT(openRobot(const QString &)));
     ros_thread.start();
 
     // ROS Master Check
@@ -80,7 +81,11 @@ void ControlPanel::toggleRobotWidgetsDock(bool vis)
 
 void ControlPanel::triggerNewBlankRobot()
 {
-    const QString name = ui->newBlankNameEdit->text();
+    openRobot(ui->newBlankNameEdit->text());
+}
+
+void ControlPanel::openRobot(const QString &name)
+{
     if(name.length() < 1 || name == "Home" || name == "home")
     {
         QMessageBox msg;

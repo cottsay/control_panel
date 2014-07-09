@@ -74,6 +74,9 @@ void ROSInterface::process()
 
     ROS_DEBUG("control_panel ROS interface startup complete");
 
+    for(int i = 1; i < argc; i++)
+        emit openRobot(argv[i]);
+
     ros::spin();
 
     QCoreApplication::exit(0);

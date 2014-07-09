@@ -23,6 +23,7 @@ public:
 signals:
     void masterStatusMsg(QString);
     void newPluginList(const QStringList &);
+    void openRobot(const QString &);
 
 public slots:
     void process();

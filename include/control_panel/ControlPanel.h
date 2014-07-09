@@ -30,6 +30,7 @@ signals:
 public slots:
     void toggleRobotWidgetsDock(bool vis);
     void triggerNewBlankRobot();
+    void openRobot(const QString &name);
     void closeRobotTab(int index);
     void updateMasterStatus();
     void updatePluginList(const QStringList &list);
