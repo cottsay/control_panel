@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QUuid>
 #include <QSettings>
+#include <QtOpenGL/QGLWidget>
 
 namespace control_panel
 {
@@ -22,6 +23,7 @@ public:
     QUuid uuid;
     QSettings *settings;
     ~ControlPanelPlugin();
+    static QGLWidget & getGlobalGLWidget();
 protected:
     ControlPanelPlugin();
 signals:

@@ -35,6 +35,12 @@ boost::shared_ptr<nodelet::Nodelet> ControlPanelPlugin::getNodelet()
     return boost::shared_ptr<nodelet::Nodelet>((nodelet::Nodelet *)NULL);
 }
 
+QGLWidget & ControlPanelPlugin::getGlobalGLWidget()
+{
+    static QGLWidget globalGLWidget;
+    return globalGLWidget;
+}
+
 void ControlPanelPlugin::delete_self()
 {
     settings->remove(uuid.toString());
