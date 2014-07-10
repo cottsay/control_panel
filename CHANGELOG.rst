@@ -2,8 +2,8 @@
 Changelog for package control_panel
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.5.0 (2014-07-09)
+------------------
 * Add global OpenGL widget for plugins
 * Add keyboard shortcuts for tabs
 * Open robots listed as CLA
